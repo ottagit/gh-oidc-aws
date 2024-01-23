@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 module "jenkins_server" {
-  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.1.4"
+  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.1.5"
 
   allowed_repos_branches = [ {
         org    = "ottagit"
