@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 module "github_actions" {
-  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.1.10"
+  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.2.0"
 
   allowed_repos_branches = [{
     org    = "ottagit"
