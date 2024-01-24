@@ -10,16 +10,21 @@ provider "aws" {
   }
 }
 
-module "jenkins_server" {
-  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.1.5"
+module "github_actions" {
+  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.1.10"
 
-  allowed_repos_branches = [ {
-        org    = "ottagit"
-        repo   = "gh-actions-test"
-        branch = "main" 
-      }
+  allowed_repos_branches = [{
+    org    = "ottagit"
+    repo   = "gh-actions-test"
+    branch = "main"
+    }
   ]
-} 
+
+  name            = "github-actions-role"
+  dynamo_db_table = "terraone-locks"
+  s3_bucket_name  = "batoto-bitange"
+  path_to_key     = "global/iam/github-actions/githuboidc.tfstate"
+}
 
 terraform {
   backend "s3" {
