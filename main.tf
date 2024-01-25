@@ -24,6 +24,7 @@ module "github_actions" {
   dynamo_db_table = "terraone-locks"
   s3_bucket_name  = "batoto-bitange"
   path_to_key     = "global/iam/github-actions/githuboidc.tfstate"
+  provider-name   = "token.actions.githubusercontent.com"
 }
 
 terraform {
