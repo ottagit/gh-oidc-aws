@@ -12,7 +12,7 @@ provider "aws" {
 
 # Deploy in CircleCI workflow
 module "github_actions" {
-  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.2.3"
+  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.2.4"
 
   allowed_repos_branches = [{
     org    = "ottagit"
