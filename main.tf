@@ -24,7 +24,7 @@ module "github_actions" {
   name            = "github-actions-role"
   dynamo_db_table = "terraone-locks"
   s3_bucket_name  = "batoto-bitange"
-  path_to_key     = "global/iam/github-actions/githuboidc.tfstate"
+  path_to_key     = "global/iam/github-actions/github-actions-oidc.tfstate"
   # provider-name   = "token.actions.githubusercontent.com"
 }
 
