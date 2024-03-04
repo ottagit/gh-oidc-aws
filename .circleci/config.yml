@@ -1,31 +1,14 @@
 version: 2.1
-orbs:
-  terraform: circleci/terraform@3.2.1
+jobs:
+  destroy:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - attach_workspace:
+          at: .
+      - run: terraform destroy -auto-approve 
+
 workflows:
-  deploy_infrastructure:
+  destroy-infra:
     jobs:
-      - terraform/fmt:
-          checkout: true
-          context: terraone
-      - terraform/init:
-          context: terraone
-          requires:
-            - terraform/fmt
-      - terraform/validate:
-          context: terraone
-          requires:
-            - terraform/fmt
-      - terraform/plan:
-          context: terraone
-          persist-workspace: true
-          requires:
-            - terraform/validate
-      - hold-apply:
-          type: approval
-          requires:
-            - terraform/plan
-      - terraform/apply:
-          context: terraone
-          attach-workspace: true
-          requires:
-            - hold-apply
+      - destroy
