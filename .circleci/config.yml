@@ -6,9 +6,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: terraform destroy -auto-approve 
           checkout: true
           context: terraone
+      - run: terraform destroy -auto-approve 
 
 workflows:
   destroy-infra:
