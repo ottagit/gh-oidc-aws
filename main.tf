@@ -16,7 +16,7 @@ module "github_actions" {
 
   allowed_repos_branches = [{
     org    = "ottagit"
-    repo   = "gh-actions-test"
+    repo   = "terraone"
     branch = "main"
     }
   ]
@@ -24,13 +24,13 @@ module "github_actions" {
   name            = "github-actions-role"
   dynamo_db_table = "terraone-locks"
   s3_bucket_name  = "batoto-bitange"
-  path_to_key     = "global/iam/github-actions/github-actions-oidc.tfstate"
+  path_to_key     = "stage/services/webserver-cluster/terraform.tfstate"
   # provider-name   = "token.actions.githubusercontent.com"
 }
 
 terraform {
   backend "s3" {
-    key = "global/iam/github-actions/githuboidc.tfstate"
+    key = "stage/services/webserver-cluster/terraform.tfstate"
 
     bucket = "batoto-bitange"
     region = "us-east-1"
