@@ -26,7 +26,7 @@ workflows:
             - terraform/plan
       - terraform/apply:
           context: terraone
-          persist-workspace: true
+          attach-workspace: true
           requires:
             - hold-apply
       - hold-destroy:
