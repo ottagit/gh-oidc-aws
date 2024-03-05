@@ -5,9 +5,7 @@ jobs:
       - image: hashicorp/terraform
     steps:
       - attach_workspace:
-          at: .
-          checkout: true
-          context: terraone
+          at: default
       - run: terraform destroy -auto-approve 
 
 workflows:
