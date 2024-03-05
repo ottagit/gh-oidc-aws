@@ -18,7 +18,7 @@ jobs:
           path: .
       - terraform/destroy:
           path: .
-    working_directory: .
+    working_directory: ~/workspace/environments/devops/iaac/provisioning/terraform/gh-oidc-aws
 workflows:
   single-job-lifecycle:
     jobs:
