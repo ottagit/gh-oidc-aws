@@ -1,31 +1,36 @@
-version: '2.1'
+version: 2.1
 orbs:
-  terraform: circleci/terraform@3.1
-jobs:
-  single-job-lifecycle:
-    executor: terraform/default
-    steps:
-      - checkout
-      - terraform/init:
-          path: .
-          context: terraone
-      - terraform/validate:
-          path: .
-          context: terraone
-      - terraform/fmt:
-          path: .
-          context: terraone
-      - terraform/plan:
-          path: .
-          context: terraone
-      - terraform/apply:
-          path: .
-          context: terraone
-      - terraform/destroy:
-          path: .
-          context: terraone
-    working_directory: ~/workspace/environments/devops/iaac/provisioning/terraform/gh-oidc-aws
+  terraform: circleci/terraform@3.2.1
 workflows:
-  single-job-lifecycle:
+  deploy_infrastructure:
     jobs:
-      - single-job-lifecycle
+      - terraform/fmt:
+          checkout: true
+          context: terraone
+      - terraform/init:
+          context: terraone
+          requires:
+            - terraform/fmt
+      - terraform/validate:
+          context: terraone
+          requires:
+            - terraform/fmt
+      - terraform/plan:
+          context: terraone
+          persist-workspace: true
+          requires:
+            - terraform/validate
+      - hold-apply:
+          type: approval
+          requires:
+            - terraform/plan
+      - terraform/apply:
+          context: terraone
+          persist-workspace: true
+          requires:
+            - hold-apply
+      - terraform/destroy:
+          context: terraone
+          attach-workspace: true
+          requires:
+            - terraform/apply
