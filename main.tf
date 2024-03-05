@@ -30,7 +30,7 @@ module "github_actions" {
 
 terraform {
   backend "s3" {
-    key = "stage/services/webserver-cluster/terraform.tfstate"
+    key = "global/iam/github-actions/terraform.tfstate"
 
     bucket = "batoto-bitange"
     region = "us-east-1"
