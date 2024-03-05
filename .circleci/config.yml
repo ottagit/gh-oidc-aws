@@ -8,16 +8,22 @@ jobs:
       - checkout
       - terraform/init:
           path: .
+          context: terraone
       - terraform/validate:
           path: .
+          context: terraone
       - terraform/fmt:
           path: .
+          context: terraone
       - terraform/plan:
           path: .
+          context: terraone
       - terraform/apply:
           path: .
+          context: terraone
       - terraform/destroy:
           path: .
+          context: terraone
     working_directory: ~/workspace/environments/devops/iaac/provisioning/terraform/gh-oidc-aws
 workflows:
   single-job-lifecycle:
