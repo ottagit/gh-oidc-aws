@@ -12,7 +12,7 @@ provider "aws" {
 
 # Deploy in CircleCI workflow
 module "github_actions" {
-  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.4.1"
+  source = "github.com/ottagit/modules//ci-cd/global/iam/github-actions?ref=v0.4.2"
 
   allowed_repos_branches = [{
     org    = "ottagit"
@@ -26,7 +26,6 @@ module "github_actions" {
   s3_bucket_name          = "batoto-bitange"
   path_to_web_cluster_key = "stage/services/webserver-cluster/terraform.tfstate"
   path_to_data_store_key  = "stage/data-stores/mysql/terraform.tfstate"
-  # provider-name   = "token.actions.githubusercontent.com"
 }
 
 terraform {
